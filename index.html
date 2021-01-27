@@ -1,3 +1,22 @@
+<html>
+    <head>
+    <script>
+    appModule.controller('StockQuote', ['$scope', 'getData',
+function($scope, getData) {
+    var api = getData.getStockQuote($scope.ticker_name);
+    var data = api.get({symbol:$scope.ticker_name}, function() {
+        var quote = data.query.results.quote;
+        $scope.lang = data.query.lang;
+        $scope.lastTradeDate = quote.LastTradeDate;
+        $scope.lastTradeTime = quote.LastTradeTime;
+        $scope.lastTradePriceOnly = quote.LastTradePriceOnly;
+    });
+}]);
+</script>
+        </head
+        <body>
 <section ng-controller='StockQuote'>
     <span>Last Quote: {{lang}}, {{lastTradeDate}}, {{lastTradeTime}}, {{lastTradePriceOnly}}</span>
 </section><br>
+        </body>
+</html>
